@@ -71,9 +71,18 @@ export const getUserInfo = async (req, res) => {
   }
 }
 
+export const getAll = async (req, res) => {
+  try {
+    const result = await users.find()
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
 export const updataInfo = async (req, res) => {
   try {
-    const user = await users.findByIdAndUpdate({ _id: req.user._id }, { ...req.body, image: req.file.path }, { new: true, runValidators: true })
+    const user = await users.findByIdAndUpdate({ _id: req.user._id }, req.body, { new: true, runValidators: true })
     if (user) {
       res.status(200).send({ success: false, message: '', user })
     } else {

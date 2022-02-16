@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
   nickname: {
     type: String
   },
-  avatarimg: {
+  iamge: {
     type: String
   },
   role: {
@@ -52,20 +52,24 @@ const userSchema = new mongoose.Schema({
     ]
   },
   emailswitch: {
-    type: String
+    type: Number,
+    default: 2
   },
   sex: {
     type: String,
     enum: {
-      values: ['男性', '女性', '不公開', ''],
+      values: ['男性', '女性', '不公開'],
       message: '選擇公開與否'
-    }
+    },
+    default: '不公開'
   },
   birthdayMon: {
-    type: String
+    type: Number,
+    default: 13
   },
   birthdayDate: {
-    type: String
+    type: Number,
+    default: 32
   }
 }, { versionKey: false })
 
