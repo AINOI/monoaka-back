@@ -11,7 +11,8 @@ import {
   extend,
   getUserInfo,
   updataInfo,
-  getAll
+  getAll,
+  getUserById
 } from '../controllers/users.js'
 
 const router = express.Router()
@@ -22,6 +23,7 @@ router.delete('/logout', auth, logout)
 router.post('/logout', auth, extend)
 router.get('/me', auth, getUserInfo)
 router.get('/getall', auth, admin, getAll)
+router.get('/:id', getUserById)
 router.patch('/reinfo', auth, upload, updataInfo)
 
 export default router

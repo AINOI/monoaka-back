@@ -26,6 +26,9 @@ const novelSchema = new mongoose.Schema({
   },
   author: {
     type: String
+  },
+  authorId: {
+    type: String
   }
 }, { versionKey: false })
 
