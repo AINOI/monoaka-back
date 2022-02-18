@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
   nickname: {
     type: String
   },
-  iamge: {
+  image: {
     type: String
   },
   role: {

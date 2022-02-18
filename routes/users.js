@@ -3,6 +3,7 @@ import content from '../middleware/content.js'
 import auth from '../middleware/auth.js'
 import upload from '../middleware/upload.js'
 import admin from '../middleware/admin.js'
+import member from '../middleware/members.js'
 
 import {
   register,
@@ -23,7 +24,8 @@ router.delete('/logout', auth, logout)
 router.post('/logout', auth, extend)
 router.get('/me', auth, getUserInfo)
 router.get('/getall', auth, admin, getAll)
+// router.get('/friendget', member, getAll)
 router.get('/:id', getUserById)
-router.patch('/reinfo', auth, upload, updataInfo)
+router.patch('/reinfo', auth, member, content('multipart/form-data'), upload, updataInfo)
 
 export default router

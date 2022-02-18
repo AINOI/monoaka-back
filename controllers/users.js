@@ -99,9 +99,9 @@ export const getUserById = async (req, res) => {
 
 export const updataInfo = async (req, res) => {
   try {
-    const user = await users.findByIdAndUpdate({ _id: req.user._id }, req.body, { new: true, runValidators: true })
-    if (user) {
-      res.status(200).send({ success: false, message: '', user })
+    const result = await users.findByIdAndUpdate({ _id: req.user._id }, { ...req.body, image: req.file.path }, { new: true, runValidators: true })
+    if (result) {
+      res.status(200).send({ success: false, message: '', result })
     } else {
       res.status(404).send({ success: false, message: '找不到使用者' })
     }
