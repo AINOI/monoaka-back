@@ -1,14 +1,13 @@
 import mongoose from 'mongoose'
 
 const novelSchema = new mongoose.Schema({
-  image: {
+  author: {
     type: String
   },
-  title: {
-    type: String,
-    required: [true, '請命名此篇文章']
+  authorId: {
+    type: String
   },
-  summary: {
+  image: {
     type: String
   },
   novelType: {
@@ -18,16 +17,20 @@ const novelSchema = new mongoose.Schema({
       message: '風格分類不存在'
     }
   },
-  text: {
-    type: String
+  publish: {
+    type: Boolean
   },
   publishDate: {
     type: String
   },
-  author: {
+  title: {
+    type: String,
+    required: [true, '請命名此篇文章']
+  },
+  summary: {
     type: String
   },
-  authorId: {
+  text: {
     type: String
   }
 }, { versionKey: false })

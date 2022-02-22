@@ -70,6 +70,10 @@ const userSchema = new mongoose.Schema({
   birthdayDate: {
     type: Number,
     default: 32
+  },
+  block: {
+    type: Boolean,
+    default: false
   }
 }, { versionKey: false })
 
