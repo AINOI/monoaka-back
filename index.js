@@ -5,6 +5,7 @@ import cors from 'cors'
 import usersRouter from './routes/users.js'
 import novelsRouter from './routes/novels.js'
 import pagesRouter from './routes/pages.js'
+import reportsRouter from './routes/reports.js'
 
 mongoose.connect(process.env.DB_URL, () => {
   console.log('MongoDB Connected')
@@ -37,6 +38,7 @@ app.use((_, req, res, next) => {
 app.use('/users', usersRouter)
 app.use('/novels', novelsRouter)
 app.use('/pages', pagesRouter)
+app.use('/reports', reportsRouter)
 
 app.all('*', (req, res) => {
   res.status(404).send({ success: false, message: '404 Not Found' })

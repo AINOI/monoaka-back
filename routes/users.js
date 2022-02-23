@@ -13,7 +13,9 @@ import {
   getUserInfo,
   updataInfo,
   getAll,
-  getUserById
+  getUserById,
+  accountState,
+  deleteAccount
 } from '../controllers/users.js'
 
 const router = express.Router()
@@ -21,12 +23,13 @@ const router = express.Router()
 router.post('/', content('application/json'), register)
 router.post('/login', content('application/json'), login)
 router.delete('/logout', auth, logout)
+router.delete('/deleteaccount/:id', auth, admin, deleteAccount)
 router.post('/logout', auth, extend)
 router.get('/me', auth, getUserInfo)
 router.get('/getall', auth, admin, getAll)
 // router.get('/friendget', member, getAll)
 router.get('/:id', getUserById)
-router.patch('/adminAccountState/:id', auth, admin, updataInfo)
+router.patch('/accountstate/:id', auth, admin, accountState)
 router.patch('/reinfo', auth, member, content('multipart/form-data'), upload, updataInfo)
 
 export default router

@@ -101,7 +101,7 @@ export const updataInfo = async (req, res) => {
   try {
     const result = await users.findByIdAndUpdate({ _id: req.user._id }, { ...req.body, image: req.file.path }, { new: true, runValidators: true })
     if (result) {
-      res.status(200).send({ success: false, message: '', result })
+      res.status(200).send({ success: true, message: '', result })
     } else {
       res.status(404).send({ success: false, message: '找不到使用者' })
     }
@@ -114,6 +114,38 @@ export const updataInfo = async (req, res) => {
       res.status(400).send({ sucess: false, message: error.errors[key].name })
     } else {
       console.log(error)
+      res.status(500).send({ sucess: false, message: '伺服器錯誤' })
+    }
+  }
+}
+
+export const accountState = async (req, res) => {
+  const data = {
+    block: req.body.block
+  }
+  try {
+    const result = await users.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true })
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    if (error.name === 'CastError') {
+      res.status(404).send({ success: false, message: '找不到' })
+    } else if (error.name === 'ValidationError') {
+      const key = Object.keys(error.errors)[0]
+      res.status(400).send({ success: false, message: error.errors[key].message })
+    } else {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    }
+  }
+}
+
+export const deleteAccount = async (req, res) => {
+  try {
+    await users.findByIdAndDelete(req.params.id, { new: true, runValidators: true })
+    res.status(200).send({ success: true, message: '' })
+  } catch (error) {
+    if (error.name === 'CastError') {
+      req.status(404).send({ success: false, message: '找不到使用者' })
+    } else {
       res.status(500).send({ sucess: false, message: '伺服器錯誤' })
     }
   }

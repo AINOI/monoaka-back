@@ -54,7 +54,7 @@ export const getNovelsById = async (req, res) => {
   }
 }
 
-// up date novel by ID
+// update novel by ID
 export const updataNovelsById = async (req, res) => {
   const data = {
     title: req.body.title,
@@ -81,7 +81,7 @@ export const updataNovelsById = async (req, res) => {
   }
 }
 
-// Update publish state
+// update publish state by ID
 export const updataNovelsPublishById = async (req, res) => {
   const data = {
     publish: req.body.publish
