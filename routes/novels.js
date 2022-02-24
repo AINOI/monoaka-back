@@ -19,6 +19,7 @@ const router = express.Router()
 
 router.post('/', auth, member, content('multipart/form-data'), upload, create)
 router.delete('/admin/:id', auth, admin, deleteNovels)
+router.delete('/user/:id', auth, member, deleteNovels)
 router.get('/all', auth, admin, getAllNovels)
 router.get('/', getNovels)
 router.get('/me', auth, member, getNovels)
