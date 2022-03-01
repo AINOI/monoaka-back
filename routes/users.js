@@ -23,7 +23,7 @@ const router = express.Router()
 
 router.post('/', content('application/json'), register)
 router.post('/login', content('application/json'), login)
-router.patch('/themeswitch', auth, member, themeSwitch)
+router.patch('/themeswitch', auth, themeSwitch)
 router.delete('/logout', auth, logout)
 router.delete('/deleteaccount/:id', auth, admin, deleteAccount)
 router.post('/logout', auth, extend)
