@@ -15,13 +15,15 @@ import {
   getAll,
   getUserById,
   accountState,
-  deleteAccount
+  deleteAccount,
+  themeSwitch
 } from '../controllers/users.js'
 
 const router = express.Router()
 
 router.post('/', content('application/json'), register)
 router.post('/login', content('application/json'), login)
+router.patch('/themeswitch', auth, member, themeSwitch)
 router.delete('/logout', auth, logout)
 router.delete('/deleteaccount/:id', auth, admin, deleteAccount)
 router.post('/logout', auth, extend)

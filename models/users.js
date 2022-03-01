@@ -74,6 +74,9 @@ const userSchema = new mongoose.Schema({
   block: {
     type: Boolean,
     default: false
+  },
+  themeSwitcher: {
+    type: Boolean
   }
 }, { versionKey: false })
 

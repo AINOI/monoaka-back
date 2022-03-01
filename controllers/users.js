@@ -150,3 +150,13 @@ export const deleteAccount = async (req, res) => {
     }
   }
 }
+
+export const themeSwitch = async (req, res) => {
+  const data = { themeSwitcher: req.body.themeSwitcher }
+  try {
+    await users.findByIdAndUpdate(req.user.id, data, { new: true, runValidators: true })
+    res.status(200).send({ success: true, message: '' })
+  } catch (error) {
+    res.status(500).send({ sucess: false, message: '伺服器錯誤' })
+  }
+}
